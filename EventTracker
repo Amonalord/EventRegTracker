@@ -23,8 +23,8 @@
     </div>
 
     <script>
-        const sheetURL = 'YOUR_GOOGLE_SHEET_URL'; // Replace with your Google Sheet URL
-        const apiKey = 'YOUR_GOOGLE_API_KEY'; // Replace with your API Key
+        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSu9RS7cvNVvAWyfMi9NI0pRxABwhfkpStWBAvHmoVdKZAMOlHoUtBYroUtIEqJCM2EOHVIzTSzUMgl/pub?output=csv'; // Replace with your Google Sheet URL
+        const apiKey = 'YAIzaSyDqUjGhfvOwzG5HIFpdl6f3bqLU42sxcwM'; // Replace with your API Key
 
         async function fetchData() {
             try {
