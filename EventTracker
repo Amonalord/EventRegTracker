@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 400px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+        .tracker { margin-bottom: 20px; }
+        .tracker h2 { margin-bottom: 10px; }
+        .percentage { font-size: 1.5em; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Registration Tracker</h1>
+        <div class="tracker">
+            <h2>Seats Available: <span id="seats-available">Loading...</span></h2>
+            <h2>Registered: <span id="registered">Loading...</span></h2>
+            <h2>Percentage Achieved: <span class="percentage" id="percentage">Loading...</span></h2>
+        </div>
+    </div>
+
+    <script>
+        const sheetURL = 'YOUR_GOOGLE_SHEET_URL'; // Replace with your Google Sheet URL
+        const apiKey = 'YOUR_GOOGLE_API_KEY'; // Replace with your API Key
+
+        async function fetchData() {
+            try {
+                const response = await fetch(`${sheetURL}?key=${apiKey}`);
+                const data = await response.json();
+                const rows = data.values;
+                const seatsAvailable = parseInt(rows[1][0]);
+                const registered = parseInt(rows[1][1]);
+
+                document.getElementById('seats-available').textContent = seatsAvailable;
+                document.getElementById('registered').textContent = registered;
+
+                const percentageAchieved = ((registered / seatsAvailable) * 100).toFixed(2);
+                document.getElementById('percentage').textContent = `${percentageAchieved}%`;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        fetchData();
+    </script>
+</body>
+</html>
