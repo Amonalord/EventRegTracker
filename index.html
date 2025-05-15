@@ -64,10 +64,12 @@
             document.getElementById("percentage").textContent = percentage.toFixed(2) + "%";
             document.getElementById("progressFill").style.width = percentage + "%";
             document.getElementById("progressFill").textContent = percentage.toFixed(2) + "%";
-             // Update last updated time
+            // Get current date and time
             let now = new Date();
+            let dateString = now.toLocaleDateString();
             let timeString = now.toLocaleTimeString();
-            document.getElementById("lastUpdated").textContent = timeString;
+            
+            document.getElementById("lastUpdated").textContent = `${dateString} - ${timeString}`;
         }
 
         updateStats();
