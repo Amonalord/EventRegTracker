@@ -52,6 +52,7 @@
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill">0%</div>
         </div>
+         <p class="last-update">Last updated: <span id="lastUpdated">--:--</span></p>
     </div>
 
     <script>
@@ -63,6 +64,10 @@
             document.getElementById("percentage").textContent = percentage.toFixed(2) + "%";
             document.getElementById("progressFill").style.width = percentage + "%";
             document.getElementById("progressFill").textContent = percentage.toFixed(2) + "%";
+             // Update last updated time
+            let now = new Date();
+            let timeString = now.toLocaleTimeString();
+            document.getElementById("lastUpdated").textContent = timeString;
         }
 
         updateStats();
