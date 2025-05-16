@@ -46,7 +46,9 @@
         <h1>FYV Registration Tracker</h1>
         <h2>Updated Every 12 Hours</h2>
         <p>Total Seats: <span id="totalSeats">300</span></p>
-        <p>Registered Attendees: <span id="registered">163</span></p>
+        <p>Adult Registrations: <span id="adultCount">150</span></p>
+        <p>Children Registrations: <span id="childrenCount">13</span></p>
+        <p>Total Registrations: <span id="registered">163</span></p>
         <p class="status">Percentage Filled: <span id="percentage">0%</span></p>
 
         <div class="progress-bar">
@@ -57,18 +59,25 @@
 
     <script>
         const totalSeats = 300;
-        let registered = 163;
+        let adultRegistrations = 150;
+        let childrenRegistrations = 13;
 
         function updateStats() {
-            let percentage = (registered / totalSeats) * 100;
+           let totalRegistered = adultRegistrations + childrenRegistrations;
+            let percentage = (totalRegistered / totalSeats) * 100;
+
+            // Update values in HTML
+            document.getElementById("adultCount").textContent = adultRegistrations;
+            document.getElementById("childrenCount").textContent = childrenRegistrations;
+            document.getElementById("registered").textContent = totalRegistered;
             document.getElementById("percentage").textContent = percentage.toFixed(2) + "%";
             document.getElementById("progressFill").style.width = percentage + "%";
             document.getElementById("progressFill").textContent = percentage.toFixed(2) + "%";
-            // Get current date and time
+
+            // Get current date and time for last update
             let now = new Date();
             let dateString = now.toLocaleDateString();
             let timeString = now.toLocaleTimeString();
-            
             document.getElementById("lastUpdated").textContent = `${dateString} - ${timeString}`;
         }
 
